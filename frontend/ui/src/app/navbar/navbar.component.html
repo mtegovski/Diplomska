@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand font-weight-bolder text-uppercase logo" [routerLink]="['']">
+      &nbsp;&nbsp;
+      {{'ФАТИ'}}
+        <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{'МАСА'}}
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item dropdown header-elements">
+          <a class="nav-link dropdown-toggle text-white active"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false">
+            Градови
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li *ngFor="let city of cities">
+              <a (click)="redirectToCity(city.id)" class="dropdown-item">{{getCityCirylicName(city.name)}}</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item header-elements">
+          <a class="nav-link text-white" (click)="openContactModal()">Контакт</a>
+        </li>
+        <li class="nav-item header-elements">
+          <a class="nav-link text-white" (click)="openAboutUsModal()">За нас</a>
+        </li>
+      </ul>
+      <div *ngIf="!currentUser">
+        &nbsp;
+        <a class="btn btn-light" routerLinkActive="active" [routerLink]="['/login']">Најави се</a>
+        &nbsp;&nbsp;
+        <a class="btn btn-danger" routerLinkActive="active" [routerLink]="['/register']">Регистер</a>
+      </div>
+      <div *ngIf="currentUser">
+        &nbsp;
+        <a *ngIf="!isUserAdmin()" class="btn btn-light" routerLinkActive="active" [routerLink]="['/reservations']">Мои резервации</a>
+        <a *ngIf="isUserAdmin()" class="btn btn-light" routerLinkActive="active" [routerLink]="['/admin']">Додади ресторан</a>
+        &nbsp;&nbsp;
+        <a class="btn btn-danger" routerLinkActive="active" (click)="signOut()">Одјави се</a>
+      </div>
+    </div>
+  </div>
+</nav>

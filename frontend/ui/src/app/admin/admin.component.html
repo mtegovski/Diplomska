@@ -1,0 +1,37 @@
+<div class="container">
+  <form [formGroup]="form" (ngSubmit)="addRestaurant()">
+    <div class="form-group">
+      <label for="restaurantName">Име на објект</label>
+      <input class="form-control" id="restaurantName" formControlName="restaurantName" type="text" placeholder="Име...">
+    </div>
+    <div class="form-group">
+      <label for="restaurantCity">Град во кој е објектот</label>
+      <select class="form-control" id="restaurantCity" formControlName="restaurantCity">
+        <option *ngFor="let city of cities" [selected]="shouldBeSelectedCity(city.id)" [value]="city.id">{{getCirylicCityName(city.name)}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="restaurantCategory">Категорија на објектот</label>
+      <select class="form-control" id="restaurantCategory" formControlName="restaurantCategory">
+        <option *ngFor="let c of categories"
+                 [selected]="shouldBeSelectedCategory(c)">{{c}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="restaurantRating">Рејтинг</label>
+      <input class="form-control" id="restaurantRating" formControlName="restaurantRating" type="number" placeholder="Рејтинг...">
+    </div>
+    <div class="form-group">
+      <label for="restaurantCapacity">Максимален капацитет</label>
+      <input class="form-control" id="restaurantCapacity" formControlName="restaurantCapacity" type="number" placeholder="Капацитет...">
+    </div>
+    <div class="form-group">
+      <label for="restaurantPhotos">Број на слики</label>
+      <input class="form-control" id="restaurantPhotos" formControlName="restaurantPhotos" type="number" placeholder="Слики...">
+    </div>
+    <button [disabled]="!form.valid" type="submit"
+            [class]="!form.valid ? 'btn btn-danger' : 'btn btn-primary'">
+      {{isEditingCity ? 'Ажурирај го објектот' : 'Креирај го објектот'}}</button>
+  </form>
+</div>
+

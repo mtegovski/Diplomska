@@ -1,0 +1,8 @@
+.banner {
+  background-image: url(/assets/photos/kafana.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  /* min-height: 100vh; */
+  filter: brightness(75%);
+}

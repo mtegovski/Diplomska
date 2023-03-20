@@ -1,0 +1,16 @@
+<app-city-header (filterOut)="filterRestaurants($event)"
+                 (searchTextChanged)="filterBySearch($event)">
+</app-city-header>
+<div class="container">
+  <br>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let restaurant of restaurants; index as i">
+      <app-restaurant-card [restaurant]="restaurant"
+                           [cityName]="city.name"
+                           (refreshRestaurants)="refresh()">
+      </app-restaurant-card>
+      <br *ngIf="i % 3 === 0">
+    </div>
+  </div>
+  <br>
+</div>

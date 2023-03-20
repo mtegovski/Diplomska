@@ -1,0 +1,57 @@
+<div class="container mt-5">
+  <div class="card ms-auto me-auto p-3 shadow-lg custom-card">
+
+    <form #f="ngForm" (ngSubmit)="f.form.valid && login()">
+
+      <div class="alert alert-danger" *ngIf="errorMessage">
+        {{errorMessage}}
+      </div>
+
+      <div class="form-group">
+        <label for="email">Е-маил</label>
+        <input
+          type="text"
+          id="email"
+          name="email"
+          [(ngModel)]="user.email"
+          #email="ngModel"
+          class="form-control"
+          required
+        >
+        <div class="alert-danger" *ngIf="!email.valid && f.submitted">
+          Е-маил адресата е задолжителен.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Лозинка</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="user.password"
+          #password="ngModel"
+          class="form-control"
+          required
+        >
+        <div class="alert-danger" *ngIf="!password.valid && f.submitted">
+          Лозинката е задолжителна.
+        </div>
+      </div>
+
+      <re-captcha (resolved)="resolved($event)"
+                  siteKey="6LfMiwklAAAAADPqTNTszJrCWvi89sHoEzo1Fd76">
+      </re-captcha>
+
+      <button type="submit" class="btn btn-danger w-100 mt-3" [disabled]="!captcha">
+        Најави се
+      </button>
+
+    </form>
+
+    <a [routerLink]="['/register']" class="btn btn-link" style="color: darkgray;">
+      Направи нова сметка
+    </a>
+
+  </div>
+</div>

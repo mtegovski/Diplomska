@@ -1,0 +1,18 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li [class]="getActiveClass(category)" *ngFor="let category of categories">
+        <a class="nav-link btn text-white" (click)="filterRestaurants(category)"
+           [style.background-color]="getButtonStyle(category)">{{getCirylicCategoryName(category)}}</a>
+    </ul>
+    <div class="form-inline">
+      {{enteredSearchValue}}
+      <input [(ngModel)]="enteredSearchValue" (input)="onSearchTextChanged()"
+             class="form-control mr-sm-2" type="text" placeholder="Пребарај">
+    </div>
+  </div>
+</nav>

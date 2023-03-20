@@ -1,0 +1,19 @@
+.logo{
+  width: 20%;
+  margin-bottom: 0;
+}
+
+li:hover{
+  cursor: pointer;
+}
+
+ul{
+  align-self: center;
+}
+
+.header-elements{
+  font-size: 22px;
+  padding-left: 10px;
+  padding-right: 15px;
+  margin-right: 35px;
+}

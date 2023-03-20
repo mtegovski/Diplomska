@@ -1,0 +1,31 @@
+<app-navbar [currentUser]="currentUser"
+            (signOutPerson)="updateUser()"
+            (aboutUsModal)="openModal(aboutUsModal)"
+            (contactModal)="openModal(contactModal)">
+</app-navbar>
+<ng-template #contactModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title justify-content-center">Контактирајте нè</h5>
+    <button type="button" class="close" (click)="modal.close()">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p class="justify-content-center"><i class="fa fa-phone"></i><strong> Телефон</strong>:<a href="tel:071-326-022">  071-326-022</a></p>
+    <p class="justify-content-center"><i class="fa fa-envelope"></i><strong> Емаил</strong>: <a href="mailto:info@fatimasa.mk">info@fatimasa.mk</a></p>
+    <p class="justify-content-center"><i class="fa fa-globe"></i><strong> Веб</strong>: <a href="https://fatimasa.mk/">www.fatimasa.mk</a></p>
+  </div>
+</ng-template>
+<ng-template #aboutUsModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">За нас</h4>
+    <button type="button" class="close" (click)="modal.close()">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    Фати Маса е нова македонска веб платформа за онлајн резервација
+    на маса во голем број угостителски објекти низ цела држава.
+  </div>
+</ng-template>
+<router-outlet></router-outlet>

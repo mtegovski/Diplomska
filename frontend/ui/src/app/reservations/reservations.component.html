@@ -1,0 +1,79 @@
+<div class="container">
+  <br>
+  <div class="row" *ngIf="reservations.length > 0; else noReservations">
+    <div class="col-4" *ngFor="let reservation of reservations; index as i">
+      <div class="card" style="width: 20rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{reservation.restaurantName}}</h5>
+          <p class="card-text">Имате резервација за {{reservation.numberOfGuests}} личности во терминот
+            {{reservation.date | date: 'на dd.MM.yyyy во H:mm'}}.</p>
+          <button (click)="openModal(editReservationModal)" class="btn btn-primary">Ажурирај резервација</button>
+          <br>
+          <br>
+          <button (click)="deleteReservation(reservation.id)" class="btn btn-danger">Избриши резервација</button>
+        </div>
+      </div>
+      <br *ngIf="i % 3 === 0">
+      <ng-template #editReservationModal let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title">Фати си маса!</h4>
+          <button type="button" class="close" (click)="modal.close()">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <form #f="ngForm" (ngSubmit)="f.form.valid && editReservation(modal, reservation, reservation.id)">
+          <div class="modal-body mx-3">
+            <div class="md-form mb-5">
+              <i class="fas fa-user prefix grey-text"></i>&nbsp;
+              <label data-error="wrong" data-success="right" for="guests">За колку личности?</label>
+              <div class="form-group">
+                <input
+                  type="number"
+                  id="guests"
+                  name="guests"
+                  [(ngModel)]="reservation.numberOfGuests"
+                  #guests="ngModel"
+                  class="form-control"
+                  required
+                >
+                <div class="alert-danger" *ngIf="!guests.valid && f.submitted">
+                  Невалиден број на луѓе.
+                </div>
+              </div>
+            </div>
+
+            <div class="md-form mb-5">
+              <i class="fas fa-clock prefix grey-text"></i>&nbsp;
+              <label data-error="wrong" data-success="right" for="guests">Во колку часот?</label>
+              <div class="form-group">
+                <input
+                  type="datetime-local"
+                  name="datepicker"
+                  id="datepicker"
+                  [(ngModel)]="reservation.date"
+                  #dates="ngModel"
+                  class="form-control"
+                  required>
+
+                <div class="alert-danger" *ngIf="!dates.valid && f.submitted">
+                  Невалиден датум.
+                </div>
+                <div class="alert-danger" *ngIf="isDateInPast() && f.submitted">
+                  Датумот е во минатото.
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button class="btn btn-default" type="submit">Резервирај</button>
+          </div>
+        </form>
+      </ng-template>
+    </div>
+  </div>
+  <ng-template #noReservations>
+    <div>Моментално немате резервации</div>
+  </ng-template>
+  <br>
+</div>
