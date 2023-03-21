@@ -38,4 +38,7 @@ public class User {
 
     @Transient
     private String refreshToken;
+
+    @OneToMany(mappedBy = "email")
+    private List<JwtRefreshToken> jwtRefreshTokens;
 }

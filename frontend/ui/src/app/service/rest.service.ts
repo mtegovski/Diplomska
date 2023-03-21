@@ -16,16 +16,15 @@ export class RestService {
     return this.http.get<Restaurant>(this.baseURL + '/restaurant/' + id);
   }
 
-  async getAllCitiesWithRestaurants(): Promise<Array<City>> {
-    return firstValueFrom(this.http.get<Array<City>>(this.baseURL + '/city'));
-  }
-
   getAllCities(): Observable<Array<City>> {
     return this.http.get<Array<City>>(this.baseURL + '/city');
   }
 
   getAllRestaurantsInCity(id: number): Observable<City> {
     return this.http.get<City>(this.baseURL + '/city/' + id);
+  }
+  async getAllCitiesWithRestaurants(): Promise<Array<City>> {
+    return firstValueFrom(this.http.get<Array<City>>(this.baseURL + '/city'));
   }
 
   makeReservation(reservation: Reservation): Observable<Reservation> {

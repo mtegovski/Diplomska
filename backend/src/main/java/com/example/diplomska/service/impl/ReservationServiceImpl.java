@@ -74,13 +74,11 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public List<Reservation> findByUserEmail(String email) {
-        List<Reservation> reservations = this.reservationRepository.findReservationsByUserEmail(email);
-        reservations = reservations
+        return this.reservationRepository.findReservationsByUserEmail(email)
                 .stream()
                 .filter(r -> r.getDate().isAfter(LocalDateTime.now()))
                 .sorted()
                 .collect(Collectors.toList());
-        return reservations;
     }
 
     private void sendConfirmReservationMail(Reservation reservation) {

@@ -1,9 +1,6 @@
 package com.example.diplomska.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -28,4 +25,7 @@ public class JwtRefreshToken
 
     @Column(name = "expiration_date", nullable = false)
     private LocalDateTime expirationDate;
+
+    @ManyToOne
+    private User user;
 }
