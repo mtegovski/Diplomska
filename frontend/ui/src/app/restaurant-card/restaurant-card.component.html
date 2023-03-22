@@ -9,12 +9,12 @@
     <li class="list-group-item">Оцена {{restaurant.rating}} од 5.</li>
   </ul>
   <div class="card-body">
-    <a class="card-link" (click)="openRestaurant()">Отвори ресторан</a>
+    <a class="card-link" (click)="openRestaurant()">Отвори објект</a>
   </div>
   <div class="card-body" *ngIf="isAdminUser()">
-    <button class="btn btn-danger" (click)="deleteRestaurant()">Избриши ресторан</button>
+    <button class="btn btn-danger" (click)="deleteRestaurant()">Избриши објект</button>
     <br>
     <br>
-    <button class="btn btn-primary" [routerLink]="['/admin/' + restaurant.id]">Ажурирај ресторан</button>
+    <button class="btn btn-primary" [routerLink]="['/admin/' + restaurant.id]">Ажурирај објект</button>
   </div>
 </div>

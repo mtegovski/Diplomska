@@ -44,12 +44,12 @@
         &nbsp;
         <a class="btn btn-light" routerLinkActive="active" [routerLink]="['/login']">Најави се</a>
         &nbsp;&nbsp;
-        <a class="btn btn-danger" routerLinkActive="active" [routerLink]="['/register']">Регистер</a>
+        <a class="btn btn-danger" routerLinkActive="active" [routerLink]="['/register']">Регистрирај се</a>
       </div>
       <div *ngIf="currentUser">
         &nbsp;
         <a *ngIf="!isUserAdmin()" class="btn btn-light" routerLinkActive="active" [routerLink]="['/reservations']">Мои резервации</a>
-        <a *ngIf="isUserAdmin()" class="btn btn-light" routerLinkActive="active" [routerLink]="['/admin']">Додади ресторан</a>
+        <a *ngIf="isUserAdmin()" class="btn btn-light" routerLinkActive="active" [routerLink]="['/admin']">Додади објект</a>
         &nbsp;&nbsp;
         <a class="btn btn-danger" routerLinkActive="active" (click)="signOut()">Одјави се</a>
       </div>
